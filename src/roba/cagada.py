@@ -33,9 +33,11 @@ class Solution(object):
         toma_que_toma.append(numeros[0])
         no_toma.append(0)
         
-        for idx_num, numero in enumerate(numeros, 1):
+        for idx_num, numero in enumerate(numeros[1:],1):
+	    logger_cagada.debug("fedewolf %u, anterior %u"%(idx_num,idx_num-1))
+	    logger_cagada.debug("toma anterior %u, no toma anterior %u, num act %u"%(toma_que_toma[idx_num - 1],  no_toma[idx_num - 1], numero))
             no_toma.append(max([toma_que_toma[idx_num - 1], no_toma[idx_num - 1]]))
-            toma_que_toma.append(no_toma[idx_num] + numero)
+            toma_que_toma.append(no_toma[idx_num-1] + numero)
             
         logger_cagada.debug("toma que toma %s" % toma_que_toma)
         logger_cagada.debug("no toma %s" % no_toma)
@@ -59,4 +61,6 @@ if __name__ == '__main__':
     logger_cagada.setLevel(nivel_log)
 
     mierda=Solution()
-    mierda.rob([423,5,6,0,3,5,2,123,332])
+#    mierda.rob([423,5,6,0,3,5,2,123,332])
+#    mierda.rob([1,1])
+    mierda.rob([1,3,1])
